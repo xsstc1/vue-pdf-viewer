@@ -1,4 +1,4 @@
-import PDFJS from 'pdfjs-dist/webpack';
+const PDFJS = require('pdfjs-dist/webpack');
 import utils from './utils';
 
 export default class PDFPage {

@@ -1,24 +1,37 @@
 {
-  "name": "vue-pdf-viewer-package",
-  "version": "1.0.4",
-  "description": "pdf viewer based on pdfjs",
-  "main": "index.js",
-  "scripts": {
-    "build": "node build/build.js"
+  "_from": "vue-pdf-viewer-package@^1.0.4",
+  "_id": "vue-pdf-viewer-package@1.0.4",
+  "_inBundle": false,
+  "_integrity": "sha1-ZjIkVVCPmq4vfriHSXSUro9bzcY=",
+  "_location": "/vue-pdf-viewer-package",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "vue-pdf-viewer-package@^1.0.4",
+    "name": "vue-pdf-viewer-package",
+    "escapedName": "vue-pdf-viewer-package",
+    "rawSpec": "^1.0.4",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/TigerLiv/vue-pdf-viewer.git"
-  },
-  "keywords": [
-    "pdf",
-    "viewer"
+  "_requiredBy": [
+    "/"
   ],
+  "_resolved": "https://registry.npm.taobao.org/vue-pdf-viewer-package/download/vue-pdf-viewer-package-1.0.4.tgz",
+  "_shasum": "66322455508f9aae2f7eb887497494ae8f5bcdc6",
+  "_spec": "vue-pdf-viewer-package@^1.0.4",
+  "_where": "D:\\Development\\VueProject\\sys_review_front",
   "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "pdfjs-dist": "^2.1.266"
+  "bugs": {
+    "url": "https://github.com/TigerLiv/vue-pdf-viewer/issues"
   },
+  "bundleDependencies": false,
+  "dependencies": {
+    "pdfjs-dist": "^2.6.347"
+  },
+  "deprecated": false,
+  "description": "pdf viewer based on pdfjs",
   "devDependencies": {
     "chalk": "^2.4.2",
     "css-loader": "^3.2.0",
@@ -26,5 +39,21 @@
     "rimraf": "^3.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.39.2"
-  }
+  },
+  "homepage": "https://github.com/TigerLiv/vue-pdf-viewer#readme",
+  "keywords": [
+    "pdf",
+    "viewer"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "vue-pdf-viewer-package",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TigerLiv/vue-pdf-viewer.git"
+  },
+  "scripts": {
+    "build": "node build/build.js"
+  },
+  "version": "1.0.4"
 }

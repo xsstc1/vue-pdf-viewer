@@ -1,4 +1,4 @@
-import PDFJS from 'pdfjs-dist/webpack';
+const PDFJS = require('pdfjs-dist/webpack');
 import PDFPage from './PDFPage';
 import utils from './utils';
 
@@ -21,7 +21,8 @@ export default class PDFViewer {
       throw new Error('Empty container');
     }
 
-    this.container = container;    
+    this.container = container;
+    console.log('PDFJS', PDFJS)
     this.url = url;
     this.data = data;
     this.gap = gap || 0;
@@ -61,7 +62,6 @@ export default class PDFViewer {
     } else if (data) {
       cfg.data = data;
     }
-
     this.pdfTask = PDFJS.getDocument(cfg);
     this.pdfTask.promise.then(doc => {
       this.doc = doc;
@@ -70,7 +70,7 @@ export default class PDFViewer {
         this.ready = true;
         return;
       }
-      
+
       for (let index = 1; index <= pageCount; ++index) {
         const page = new PDFPage({
           width: this.width,
@@ -83,7 +83,7 @@ export default class PDFViewer {
       }
       this.ready = true;
     }).then(() => {
-      this.render(true);      
+      this.render(true);
     }).then(() => {
       while (this.events.load.length > 0) {
         this.events.load.shift()();
@@ -91,7 +91,7 @@ export default class PDFViewer {
     });
     this.container.addEventListener('scroll', () => this.onScroll());
     window.addEventListener('resize', () => this.onResize());
-    
+
     this.containerWather = new MutationObserver(() => {
       if (!this.ready) {
         return;
@@ -107,7 +107,7 @@ export default class PDFViewer {
             page.resize(this.width);
           });
           this.render(true);
-        }        
+        }
       }, 150);
     });
 
@@ -118,7 +118,7 @@ export default class PDFViewer {
     });
   }
 
-  render(force) {    
+  render(force) {
     if (!this.ready || !this.container || !this.pages.length) {
       return;
     }
@@ -130,7 +130,7 @@ export default class PDFViewer {
     let currentPage = 0;
     let prevPageHeight = 0;
 
-    this.pages.forEach((page, pageIndex) => {   
+    this.pages.forEach((page, pageIndex) => {
       const pageHeight = page.height;
       const tempPageTop = scrollTop - prevPageHeight;
       page.render(force);
@@ -142,7 +142,7 @@ export default class PDFViewer {
             page.page = pdfPage;
             page.render(force);
           });
-        }        
+        }
         if (currentPage === 0 && tempPageTop <= 0 && tempPageTop + pageHeight > 0) {
           currentPage = pageIndex + 1;
         }
@@ -184,10 +184,10 @@ export default class PDFViewer {
           pageInstance.render(true).then(() => {
             pageTop = pageInstance.getPageElement().offsetTop;
             this.container.scrollTop = pageTop + offset * pageInstance.scale;
-          });          
+          });
         });
       }
-    } else {      
+    } else {
       this.container.scrollTop = pageTop + offset;
     }
   }
@@ -205,7 +205,7 @@ export default class PDFViewer {
 
   onResize() {
     const newWidth = this.calcWidth();
-    if (this.width !== newWidth) { 
+    if (this.width !== newWidth) {
       // width changes to trigger rerender
       this.container.setAttribute('resize', utils.getUniqueId());
     }
@@ -227,7 +227,7 @@ export default class PDFViewer {
       page.destroy();
     });
     this.pages = null;
-    
+
     // event listener unregister
     this.container.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onResize);
@@ -245,7 +245,7 @@ export default class PDFViewer {
     if (this.pdfTask) {
       this.pdfTask.destroy();
       this.pdfTask = null;
-    }   
+    }
     this.events = null;
   }
 
